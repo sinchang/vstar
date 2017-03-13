@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "vstar",
+  "description": "A simple web app to show your or others GitHub account stars.",
+  "version": "0.1.0",
+  "repository": {
+    "url": "sinchang/vstar",
+    "type": "git"
+  },
+  "scripts": {
+    "test": "echo lol",
+    "lint": "vbuild --eslint",
+    "dev": "vbuild -d",
+    "build": "vbuild"
+  },
+  "devDependencies": {
+    "axios": "^0.15.3",
+    "bulma": "^0.3.2",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^6.0.3",
+    "vbuild": "^6.0.0"
+  },
+  "license": "MIT"
+}
