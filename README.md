@@ -1,5 +1,5 @@
 # vstar
-> A simple web app to show your or others GitHub account stars.
+> A simple web app to show your or others GitHub account stars. Inspired by [starz](https://github.com/yyx990803/starz)
 
 [Live Demo](https://sinchang.github.io/vstar)
 
