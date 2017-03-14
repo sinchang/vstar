@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <template>
+      <github-badge slug="sinchang/vstar" />
+    </template>
     <p class="control has-addons has-addons-centered">
       <input class="input" type="text" placeholder="GitHub account" v-model="name">
       <input class="input" type="text" placeholder="limit" v-model="limit">
@@ -19,6 +22,9 @@
 
 <script>
   import axios from 'axios'
+  import NProgress from 'nprogress'
+  import GitHubBadge from 'vue-github-badge'
+
   const fixRate = '?client_id=60d16794dabd9b52de64&client_secret=5a60e7ab2dd5135ab1cf28bf43482e1f3d15b8a5';
 
   export default {
@@ -44,16 +50,24 @@
           return
         }
 
+        NProgress.inc()
+
         axios.get('https://api.github.com/users/' + this.name + fixRate)
         .then((response) => {
           var totalRepos = response.data.public_repos
+          if (!totalRepos) {
+            this.errorHandler('Repo is empty!')
+            NProgress.done()
+            return
+          }
           var pages = Math.ceil( totalRepos / 100)
           while(pages--) {
             this.fetchRepos(pages + 1)
           }
         })
         .catch((error) => {
-          console.log(error)
+          NProgress.done()
+          this.errorHandler()
         });
       },
       fetchRepos(page) {
@@ -63,10 +77,12 @@
           if (page === 1) {
             this.filter(this.repos)
             this.vTotal = this.total
+            NProgress.done()
           }
         })
         .catch((error) => {
-          console.log(error);
+          NProgress.done()
+          this.errorHandler()
         });
       },
       saveReposData(repos) {
@@ -88,12 +104,25 @@
         })
 
         this.vRepos = newArr.slice(0, this.limit)
+      },
+      errorHandler(text) {
+        text = text || "Something wrong, Please try again!"
+        this.$toasted.show(text, {
+          theme: "bubble",
+          position: "top-right",
+          duration : 1000
+        });
       }
     },
+    components: {
+      'github-badge': GitHubBadge
+    }
   }
 </script>
 
 <style lang="scss">
+  @import '../../node_modules/nprogress/nprogress.css';
+
   html, body, #app {
     height: 100%;
   }
@@ -116,6 +145,14 @@
     .name {
       display: inline-block;
       min-width: 70%;
+    }
+  }
+  #nprogress {
+    .bar {
+      background: #00c4a7;
+    }
+    .peg {
+      box-shadow: 0 0 10px #00c4a7, 0 0 5px #00c4a7
     }
   }
 </style>
