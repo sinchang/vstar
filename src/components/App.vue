@@ -85,7 +85,7 @@
     },
     created() {
       var parsed = queryString.parse(location.search)
-      var isEmpty = Object.keys(parsed).length === 0 && parsed.constructor === Object
+      var isEmpty = Object.keys(parsed).length === 0
 
       if (isEmpty) {
         return
