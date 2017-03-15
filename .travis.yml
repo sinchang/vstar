@@ -1,24 +1,30 @@
 language: node_js
 node_js: stable
+
 cache:
   directories:
-  - node_modules
+    - node_modules
+
 install:
-- npm install
+  - npm install
+
 script:
-- npm run build
+  - npm run build
+
 after_script:
-- cd dist
-- git init
-- git config user.name "sinchang"
-- git config user.email "sinchangwen@gmail.com"
-- git add .
-- git commit -m "Update"
-- git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages
+  - cd dist
+  - git init
+  - git config user.name "sinchang"
+  - git config user.email "sinchangwen@gmail.com"
+  - git add .
+  - git commit -m "Update"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages
+
 branches:
   only:
-  - master
+    - master
+
 env:
   global:
-  - GH_REF: github.com/sinchang/vstar.git
-  - secure: KONCiS17u+VNfIV7w/D+ylz1jWQG0RL8VbAwWQ3Zk0rO5BcPwiyXL5MOtAxZ6UFZU2PeqPxqWnOI6dGj12gIxL2R9I4SIsdws6koT3NA7O3axUi/dCZY1TbcUyBVFUC6iNHqA7TmC3sIw2LecUpIMVSvZVEgk7RyEJvyk8fFgbjrbIvb2TvALjKducW2y/IIcezuShV/4gDm+sH/bi6T85bfu/WlwwPnecFTH8mSXLO/CQ3gXaJvd24juaHIl2LvBm+K17zF893X5VaLE9ADPVvqQ3aDqK0+OLhUUcshINOns12U7rk80qf139rq2DAuU8X5USqf0ay4aBtPHcoqNAn5S3OBPf5QrWkR6L3A5MA3fBHQoKIAsPUHE3/gsgk/hzADs5wx4ElldBWYeDm9z+2sdfM89EUYCoeVThU+/tuyW+VXq4/FFDcJi1keWxOCrpcsI0Z7mDMjRwXGdPvpb2/DwRxemIKi+AeovOQHlnHxgnDqxM5TLIK8ZaUWO5LCpUK2ZRNPbh6ktmqVrtKLw+fx9JJkx318XCm0swykDLKcGF43OV1GC7COrqNpHkBCF85NHALmymzAfC28W2rBgbk2y1w5Hcg+mzEPpbZhUSvMoSkoZF1qheWEiwqPnkKYPDAfzyJhbwq0MCeFAQAikRP21+R3V7Y5tIZX9vveMl4=
+    - GH_REF: github.com/sinchang/vstar.git
+    - secure: feI1KtnK8zvt9B4nYgjYVkMcUsPhNQG3zvDoq+ILm0u2BDocmkcWCfL6kJUSbHOftU3CMg7UsJCPFhd2CTwM6JigNgMxmqjYQAgszffAjqcctxiRSUIL4rm3b8u+T6/sx9nVHcka2hytIzyFZ4X2xI8gbm2tRAhBdrc57kGAtSeCIBBZ6Fy45sKUZ0h8sTFjN9dVv6r2nOW5UIlIY4DFc++8geMDEj18mk8RQSs9b9AW3N9uD47V8HnzL4vF3j+X0+pvFhq8k6HGiJLGHIoHc9h8yf/u86y2wSYZDtPfDAZCuv4H1N/Vhj8Zk6yAFuBX0cneajE294/JZj3nOWZSQuL25jOYMWy02c66buajvCrDyHmXTMNCz5maqOIzk5uevbBUAC/NKSPwt8LELHhTuSOZFbj2OkSBL0jXZCDGjVv0idaAEVTjbcFNTmvzZHhj/q8Ja6bLHzeugPCDWWPeR5g1O5GbI31V1/zvMM6uVHyiAleQEGkXw0xB7GkQmPy5USm38Gkuk5utUEs9QlitZDgV4LtoggnC2Z83wcdNs+J2FCRQsriWa8jOFWLPVt6x2u3NmihaAARvwbcQDpiuyLGVi5n3prS/KrzkMxq1oNfzBpGzI3a94uVxKxtdk1rJc8PMogK10MtNG1ueVOOgB79Pkxd++W2RD8dpxpIrXuo=
