@@ -1,0 +1,33 @@
+language: node_js
+node_js: stable
+
+# Travis-CI Caching
+cache:
+  directories:
+    - node_modules
+
+
+# S: Build Lifecycle
+install:
+  - npm install
+
+script:
+  - npm run build
+
+after_script:
+  - cd dist
+  - git init
+  - git config user.name "sinchang"
+  - git config user.email "sinchangwen@gmail.com"
+  - git add .
+  - git commit -m "Update"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages
+# E: Build LifeCycle
+
+branches:
+  only:
+    - master
+env:
+ global:
+   - GH_REF: github.com/sinchang/vstar.git
+   - secure: "Dka37foE/XrCPSSIjK8gagnBUJFhgnO3e+sXdu6K8SPGkyIeHhoE8UDJNqLL86a5X1bzw6Gitx+81lQciR9fKSMZMjhSbp7kkhxNotKWIua7Y+y9Y2gjl1CA3bTqFdJOb2fV96L+rEnxrZa7FEA1C43sEnJYSo9HBJ8sm22OJ2QCCaH5jrE0FO32rghxAULjc9BgxadrvKeRGPpwFkIdEFkJodP66Me6m/OeeXTsJYo734ngHVI9i8vIGiXxzh0t/UFYywues4mLGqfCDlZ/ce8cfMDyE9CbDZJiFS8ookhGYQ5VQlSs5ZBaCLWX5fFQMD5TM0qLDS8TVTtAxTIYzp4oasnEV9Ch0wtByOHrAOjPTmbWOPiXzG29wBiG+iVgSfuTCieMNzcplB5dWXcXOs9sjS8wcr8wXYNo/BlZCw25DLa3BMWyevZS3F2N1gr8rRBRT3Ua4PdZuDIwwe0XyLH7tEf2xfrn1rNln5eYIaO5TFmAlm70InZ25P/AOxXm4GVPebIHkEqZRTR6DR70eeqltmD3PEXbSxU+/aBU2oqEAROIf5UZJsTvmGZTa/EkTnH+dnd+Z2+OXEz4URzajwRRlOFFjRHdy40d4Hd791Go54mYoOKtK0/dGm+WUtTgEWFECvo/CF0TyUS1/rJJRLf4oY2lrB9Y4Hhph6PMtPg="
