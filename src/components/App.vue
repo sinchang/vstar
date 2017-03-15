@@ -62,6 +62,7 @@
 
 <script>
   import axios from 'axios'
+  import { isEmptyObject, getSessionStorage, setSessionStorage } from '../util/util'
   import NProgress from 'nprogress'
   import queryString from 'query-string'
   import GitHubBadge from 'vue-github-badge'
@@ -85,9 +86,8 @@
     },
     created() {
       var parsed = queryString.parse(location.search)
-      var isEmpty = Object.keys(parsed).length === 0
 
-      if (isEmpty) {
+      if (isEmptyObject(parsed)) {
         return
       }
 
@@ -107,6 +107,13 @@
           return
         }
 
+        if (getSessionStorage(this.name)) {
+          this.repos = getSessionStorage(this.name)
+          this.filter(this.repos)
+          return
+        }
+
+        // start ajax progresss
         NProgress.inc()
 
         axios.get('https://api.github.com/users/' + this.name + fixRate)
@@ -136,6 +143,7 @@
             this.vTotal = this.total
             this.title = document.title = `😎 WOW, ${this.name} got a total of ${this.vTotal} GitHub stars`
             this.link = location.origin + `?name=${this.name}&limit=${this.limit}&thresh=${this.thresh}`
+            setSessionStorage(this.name, this.repos) // save data to SessionStorage
             NProgress.done()
           }
         })
