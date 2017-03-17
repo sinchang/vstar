@@ -116,7 +116,7 @@
         // start ajax progresss
         NProgress.inc()
 
-        axios.get('https://api.github.com/users/' + this.name + fixRate)
+        axios.get(`https://api.github.com/users/${this.name}${fixRate}`)
         .then((response) => {
           var totalRepos = response.data.public_repos
           if (!totalRepos) {
@@ -135,7 +135,7 @@
         });
       },
       fetchRepos(page) {
-        axios.get('https://api.github.com/users/' + this.name + '/repos' + fixRate + '&per_page=100&page=' + page)
+        axios.get(`https://api.github.com/users/${this.name}/repos${fixRate}&per_page=100&page=${page}`)
         .then((response) => {
           this.saveReposData(response.data)
           if (page === 1) {
