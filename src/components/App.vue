@@ -80,7 +80,6 @@
         vTotal: null,
         repos: [],
         vRepos: [],
-        link: '',
         title: ''
       }
     },
@@ -96,9 +95,9 @@
       this.name = parsed.name
       this.fetchUser()
     },
-    watch: {
+    computed: {
       link() {
-        return
+        return location.origin + `?name=${this.name}&limit=${this.limit}&thresh=${this.thresh}`
       }
     },
     methods: {
@@ -152,7 +151,6 @@
             this.filter(this.repos)
             this.vTotal = this.total
             this.title = document.title = `😎 WOW, ${this.name} got a total of ${this.vTotal} GitHub stars`
-            this.link = location.origin + `?name=${this.name}&limit=${this.limit}&thresh=${this.thresh}`
             var data = {
               total: this.vTotal,
               repos: this.repos
