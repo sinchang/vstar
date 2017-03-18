@@ -96,6 +96,11 @@
       this.name = parsed.name
       this.fetchUser()
     },
+    watch: {
+      link() {
+        return
+      }
+    },
     methods: {
       fetchUser() {
         this.repos = []
@@ -108,8 +113,9 @@
         }
 
         if (getSessionStorage(this.name)) {
-          this.repos = getSessionStorage(this.name)
-          this.filter(this.repos)
+          var data = getSessionStorage(this.name)
+          this.vTotal = data.total
+          this.filter(data.repos)
           return
         }
 
@@ -125,9 +131,7 @@
             return
           }
           var pages = Math.ceil( totalRepos / 100)
-          while(pages--) {
-            this.fetchRepos(pages + 1)
-          }
+          this.fetchRepos(pages)
         })
         .catch((error) => {
           NProgress.done()
@@ -138,12 +142,23 @@
         axios.get(`https://api.github.com/users/${this.name}/repos${fixRate}&per_page=100&page=${page}`)
         .then((response) => {
           this.saveReposData(response.data)
-          if (page === 1) {
+          page--
+
+          if (page > 0) {
+            this.fetchRepos(page)
+          }
+
+          if (page === 0) {
             this.filter(this.repos)
             this.vTotal = this.total
             this.title = document.title = `😎 WOW, ${this.name} got a total of ${this.vTotal} GitHub stars`
             this.link = location.origin + `?name=${this.name}&limit=${this.limit}&thresh=${this.thresh}`
-            setSessionStorage(this.name, this.repos) // save data to SessionStorage
+            var data = {
+              total: this.vTotal,
+              repos: this.repos
+            }
+
+            setSessionStorage(this.name, data) // save data to SessionStorage
             NProgress.done()
           }
         })
