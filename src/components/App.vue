@@ -32,6 +32,9 @@
         <social-sharing :url="link" :title="title" inline-template>
         <div>
             <span>Share to:</span>
+            <network network="weibo">
+              <i class="fa fa-weibo"></i> Weibo
+            </network>
             <network network="facebook">
               <i class="fa fa-facebook"></i> Facebook
             </network>
