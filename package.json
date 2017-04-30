@@ -7,16 +7,16 @@
     "url": "sinchang/vstar",
     "type": "git"
   },
+  "main": "src/index.js",
   "scripts": {
     "test": "echo lol",
-    "lint": "vbuild --eslint",
-    "dev": "vbuild -d",
-    "build": "vbuild"
+    "dev": "poi",
+    "build": "poi build"
   },
   "devDependencies": {
     "node-sass": "^4.5.0",
-    "sass-loader": "^6.0.3",
-    "vbuild": "^6.0.0"
+    "poi": "^8.0.0-rc.2",
+    "sass-loader": "^6.0.3"
   },
   "dependencies": {
     "axios": "^0.15.3",
