@@ -1,8 +1,6 @@
 const path = require('path')
 
-// this will copy ./static/** to ./dist/**
 module.exports = options => ({
-  entry: 'src/index.js',
   port: 5000,
   postcss: [
     // add more postcss plugins here
@@ -10,7 +8,6 @@ module.exports = options => ({
   ],
   webpack(config) {
     config.resolve.modules.push(path.resolve('src'))
-
 
     return config
   }
