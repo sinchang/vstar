@@ -1,5 +1,5 @@
 # vstar
-![](https://travis-ci.org/sinchang/vstar.svg?branch=master)
+[![Build Status](https://travis-ci.org/sinchang/vstar.svg?branch=master)](https://travis-ci.org/sinchang/vstar)
 > A simple web app to show your or others GitHub account stars. Inspired by [starz](https://github.com/yyx990803/starz)
 
 [Live Demo](https://sinchang.github.io/vstar)
@@ -8,9 +8,8 @@
 
 - `yarn dev`: Run in development mode
 - `yarn build`: Build in production mode
-- `yarn lint`: Run eslint
 
-Check out your npm scripts, it's using [vbuild](https://github.com/egoist/vbuild) under the hood.
+Check out your npm scripts, it's using [poi](https://github.com/egoist/poi) under the hood.
 
 ---
 
