@@ -65,7 +65,7 @@
 
 <script>
   import axios from 'axios'
-  import { isEmptyObject, getSessionStorage, setSessionStorage } from '../util/util'
+  import { getSessionStorage, setSessionStorage } from '../util/util'
   import NProgress from 'nprogress'
   import queryString from 'query-string'
   import GitHubBadge from 'vue-github-badge'
@@ -87,15 +87,19 @@
       }
     },
     created() {
-      var parsed = queryString.parse(location.search)
+      const {
+        name,
+        limit = 10,
+        thresh = 1
+      } = queryString.parse(location.search)
 
-      if (isEmptyObject(parsed)) {
+      if (!name) {
         return
       }
 
-      this.limit = parsed.limit
-      this.thresh = parsed.thresh
-      this.name = parsed.name
+      this.limit = limit
+      this.thresh = thresh
+      this.name = name
       this.fetchUser()
     },
     computed: {
@@ -204,9 +208,9 @@
   }
 </script>
 
-<style lang="scss">
-  @import '../../node_modules/nprogress/nprogress.css';
+<style src="nprogress/nprogress.css"></style>
 
+<style lang="scss">
   html, body, #app {
     height: 100%;
   }
