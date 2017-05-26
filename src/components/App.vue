@@ -93,8 +93,8 @@
         return
       }
 
-      this.limit = parsed.limit
-      this.thresh = parsed.thresh
+      this.limit = parsed.limit || 10
+      this.thresh = parsed.thresh || 1
       this.name = parsed.name
       this.fetchUser()
     },
