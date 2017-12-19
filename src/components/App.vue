@@ -70,8 +70,6 @@
   import queryString from 'query-string'
   import GitHubBadge from 'vue-github-badge'
 
-  const fixRate = '?client_id=60d16794dabd9b52de64&client_secret=5a60e7ab2dd5135ab1cf28bf43482e1f3d15b8a5';
-
   export default {
     name: 'app',
     data() {
@@ -128,7 +126,7 @@
         // start ajax progresss
         NProgress.inc()
 
-        axios.get(`https://api.github.com/users/${this.name}${fixRate}`)
+        axios.get(`http://api.sinchang.me/users/${this.name}`)
         .then((response) => {
           var totalRepos = response.data.public_repos
           if (!totalRepos) {
@@ -141,11 +139,11 @@
         })
         .catch((error) => {
           NProgress.done()
-          this.errorHandler()
-        });
+          this.errorHandler(err.response.data.message || error.message)
+        })
       },
       fetchRepos(page) {
-        axios.get(`https://api.github.com/users/${this.name}/repos${fixRate}&per_page=100&page=${page}`)
+        axios.get(`http://api.sinchang.me/users/${this.name}/repos?per_page=100&page=${page}`)
         .then((response) => {
           this.saveReposData(response.data)
           page--
@@ -169,7 +167,7 @@
         })
         .catch((error) => {
           NProgress.done()
-          this.errorHandler()
+          this.errorHandler(err.response.data.message || error.message)
         });
       },
       saveReposData(repos) {
@@ -199,7 +197,7 @@
           theme: "bubble",
           position: "top-center",
           duration : 1000
-        });
+        })
       }
     },
     components: {
@@ -210,7 +208,7 @@
 
 <style src="nprogress/nprogress.css"></style>
 
-<style lang="scss">
+<style lang="less">
   html, body, #app {
     height: 100%;
   }

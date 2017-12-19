@@ -14,13 +14,12 @@
     "build": "poi build"
   },
   "devDependencies": {
-    "node-sass": "^4.5.0",
-    "poi": "^8.0.8",
-    "sass-loader": "^6.0.3"
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "poi": "^8.0.8"
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "bulma": "^0.3.2",
     "nprogress": "^0.2.0",
     "query-string": "^4.3.2",
     "vue-github-badge": "^1.0.0",
