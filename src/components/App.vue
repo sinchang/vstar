@@ -26,7 +26,14 @@
     <div class="data has-text-centered">
       <p class="total" v-if="vTotal">total: <span class="total-number" v-text="vTotal"></span>  ⭐</p>
       <ul class="rank has-text-left">
-        <li v-for="item in vRepos" v-if="vRepos"><a :href="item.url" target="_blank"><span class="name">{{item.name}}</span></a>{{item.star}}  ⭐</li>
+        <li
+          v-for="(item, index) in vRepos"
+          :key="index"
+          v-if="vRepos">
+          <span>{{ (index + 1)}}. </span>
+          <a :href="item.url" target="_blank">
+            <span class="name">{{item.name}}</span>
+          </a>{{item.star}}  ⭐</li>
       </ul>
       <div class="block share" v-if="vRepos">
         <social-sharing :url="link" :title="title" inline-template>
