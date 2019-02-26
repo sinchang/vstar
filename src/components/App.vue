@@ -146,7 +146,7 @@
         })
         .catch((error) => {
           NProgress.done()
-          this.errorHandler(err.response.data.message || error.message)
+          this.errorHandler(error.response && error.response.data.message || error.message)
         })
       },
       fetchRepos(page) {
@@ -174,7 +174,7 @@
         })
         .catch((error) => {
           NProgress.done()
-          this.errorHandler(err.response.data.message || error.message)
+          this.errorHandler(error.response && error.response.data.message || error.message)
         });
       },
       saveReposData(repos) {

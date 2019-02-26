@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from 'components/App'
+import App from './components/App'
 import Toasted from 'vue-toasted'
 import SocialSharing from 'vue-social-sharing'
 
