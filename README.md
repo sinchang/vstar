@@ -1,8 +1,10 @@
 # vstar
-[![Build Status](https://travis-ci.org/sinchang/vstar.svg?branch=master)](https://travis-ci.org/sinchang/vstar)
-> A simple web app to show your or others GitHub account stars. Inspired by [starz](https://github.com/yyx990803/starz)
 
-[Live Demo](https://sinchang.github.io/vstar)
+[![Build Status](https://travis-ci.org/sinchang/vstar.svg?branch=master)](https://travis-ci.org/sinchang/vstar)
+
+> ⭐ A simple web app to count a GitHub user's total stars. Inspired by [starz](https://github.com/yyx990803/starz)
+
+[Live Demo](http://vstar.sinchang.me/)
 
 ## Development
 
