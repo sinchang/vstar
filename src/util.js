@@ -1,13 +1,13 @@
 export const getSessionStorage = (key) => {
   if (!key) {
-    return
+    return;
   }
-  return JSON.parse(sessionStorage.getItem(key) || '{}')
+  return JSON.parse(sessionStorage.getItem(key) || "{}");
 }
 
 export const setSessionStorage = (key, value) => {
   if (!key && !value) {
-    return
+    return;
   }
-  sessionStorage.setItem(key, JSON.stringify(value))
+  sessionStorage.setItem(key, JSON.stringify(value));
 }

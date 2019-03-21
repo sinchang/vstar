@@ -101,19 +101,17 @@ export default {
     async getPages() {
       if (!this.name) {
         throw new Error("GitHub name is empty!");
-        return;
       }
 
       const {
-        data: { public_repos }
+        data: { public_repos: publicRepos }
       } = await axios.get(`http://api.sinchang.me/users/${this.name}`);
 
-      if (public_repos === 0) {
+      if (publicRepos === 0) {
         throw new Error("Repo is empty!");
-        return;
       }
 
-      return Math.ceil(public_repos / 100);
+      return Math.ceil(publicRepos / 100);
     },
     async fetchRepo(page) {
       return axios(
@@ -128,7 +126,7 @@ export default {
 
       while (page > 0) {
         const { data } = await this.fetchRepo(page);
-        data.forEach(item => {
+        data.forEach((item) => {
           total += item.stargazers_count;
           repos.push({
             name: item.name,
@@ -143,12 +141,11 @@ export default {
     },
     format(arr) {
       return arr
-        .filter(value => value.stars >= this.thresh)
+        .filter((value) => value.stars >= this.thresh)
         .sort((a, b) => b.stars - a.stars)
         .slice(0, this.limit);
     },
     showMessage(text) {
-      text = text;
       this.$toasted.show(text, {
         theme: "bubble",
         position: "top-center",
