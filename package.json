@@ -18,7 +18,7 @@
     "vue-template-compiler": "^2.6.10"
   },
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.18.1",
     "nprogress": "^0.2.0",
     "query-string": "^4.3.2",
     "vue": "^2.6.10",
