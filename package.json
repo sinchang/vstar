@@ -12,18 +12,18 @@
     "build": "vue-cli-service build src/index.js"
   },
   "devDependencies": {
-    "@vue/cli-service": "^3.4.1",
-    "less": "^3.9.0",
-    "less-loader": "^4.1.0",
-    "vue-template-compiler": "^2.6.10"
+    "@vue/cli-service": "^4.4.6",
+    "less": "^3.11.3",
+    "less-loader": "^6.2.0",
+    "vue-template-compiler": "^2.6.11"
   },
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.19.2",
     "nprogress": "^0.2.0",
-    "query-string": "^4.3.2",
-    "vue": "^2.6.10",
+    "query-string": "^6.13.1",
+    "vue": "^2.6.11",
     "vue-github-badge": "^1.0.0",
-    "vue-toasted": "^1.0.21"
+    "vue-toasted": "^1.1.28"
   },
   "license": "MIT"
 }
