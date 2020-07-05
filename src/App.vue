@@ -105,7 +105,7 @@ export default {
 
       const {
         data: { public_repos: publicRepos }
-      } = await axios.get(`http://api.sinchang.me/users/${this.name}`);
+      } = await axios.get(`http://api.github.com/users/${this.name}`);
 
       if (publicRepos === 0) {
         throw new Error("Repo is empty!");
@@ -115,7 +115,7 @@ export default {
     },
     async fetchRepo(page) {
       return axios(
-        `http://api.sinchang.me/users/${
+        `http://api.github.com/users/${
           this.name
         }/repos?per_page=100&page=${page}`
       );
