@@ -114,7 +114,7 @@ export default {
         data: { public_repos: publicRepos },
       } = await axios.get(`https://api.github.com/users/${this.name}`, {
         headers: {
-          Authorization: `Token ${this.token}`,
+          Authorization: this.generateTokenStr(),
         },
       });
 
@@ -129,7 +129,7 @@ export default {
         `https://api.github.com/users/${this.name}/repos?per_page=100&page=${page}`,
         {
           headers: {
-            Authorization: `Token ${this.token}`,
+            Authorization: this.generateTokenStr(),
           },
         }
       );
@@ -165,6 +165,11 @@ export default {
         position: "top-center",
         duration: 2000,
       });
+    },
+    generateTokenStr() {
+      if (!this.token) return "";
+
+      return `Token ${this.token}`;
     },
   },
   components: {
