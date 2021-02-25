@@ -1,22 +1,28 @@
 <template>
   <div id="app" class="section">
     <template>
-      <github-badge slug="sinchang/vstar"/>
+      <github-badge slug="sinchang/vstar" />
     </template>
     <div class="columns">
       <div class="column is-half">
         <h1 class="g-title">vstar</h1>
         <label class="label">GitHub Name:</label>
         <p class="control">
-          <input class="input" type="text" v-model="name">
+          <input class="input" type="text" v-model="name" />
         </p>
-        <label class="label">Thresh: (Only show repos above this threshold)</label>
+        <label class="label"
+          >Thresh: (Only show repos above this threshold)</label
+        >
         <p class="control">
-          <input class="input" type="text" v-model="thresh">
+          <input class="input" type="text" v-model="thresh" />
         </p>
         <label class="label">Limit: (Only show this many repos)</label>
         <p class="control">
-          <input class="input" type="text" v-model="limit">
+          <input class="input" type="text" v-model="limit" />
+        </p>
+        <label class="label">Token: (Use your own GitHub Token)</label>
+        <p class="control">
+          <input class="input" type="text" v-model="token" />
         </p>
         <p class="control">
           <button class="button is-primary" @click="fetchData">Search</button>
@@ -30,11 +36,11 @@
       </p>
       <ul class="rank has-text-left">
         <li v-for="(item, index) in repos" :key="index">
-          <span>{{ (index + 1)}}.</span>
+          <span>{{ index + 1 }}.</span>
           <a :href="item.url" target="_blank">
-            <span class="name">{{item.name}}</span>
+            <span class="name">{{ item.name }}</span>
           </a>
-          {{item.stars}} ⭐
+          {{ item.stars }} ⭐
         </li>
       </ul>
     </div>
@@ -58,7 +64,8 @@ export default {
       limit: 10,
       thresh: 1,
       total: 0,
-      repos: []
+      repos: [],
+      token: "",
     };
   },
   async created() {
@@ -91,7 +98,7 @@ export default {
         const { repos, total } = await this.fetchRepos(pages);
         this.total = total;
         this.repos = this.format(repos);
-        setSessionStorage(KEY, { total, repos: this.repos, name: this.name });
+        setSessionStorage(KEY, { total, repos, name: this.name });
         NProgress.done();
       } catch (e) {
         this.showMessage(e.message);
@@ -104,8 +111,12 @@ export default {
       }
 
       const {
-        data: { public_repos: publicRepos }
-      } = await axios.get(`http://api.github.com/users/${this.name}`);
+        data: { public_repos: publicRepos },
+      } = await axios.get(`https://api.github.com/users/${this.name}`, {
+        headers: {
+          Authorization: `Token ${this.token}`,
+        },
+      });
 
       if (publicRepos === 0) {
         throw new Error("Repo is empty!");
@@ -115,9 +126,12 @@ export default {
     },
     async fetchRepo(page) {
       return axios(
-        `http://api.github.com/users/${
-          this.name
-        }/repos?per_page=100&page=${page}`
+        `https://api.github.com/users/${this.name}/repos?per_page=100&page=${page}`,
+        {
+          headers: {
+            Authorization: `Token ${this.token}`,
+          },
+        }
       );
     },
     async fetchRepos(page) {
@@ -131,7 +145,7 @@ export default {
           repos.push({
             name: item.name,
             url: item.html_url,
-            stars: item.stargazers_count
+            stars: item.stargazers_count,
           });
         });
         page--;
@@ -149,13 +163,13 @@ export default {
       this.$toasted.show(text, {
         theme: "bubble",
         position: "top-center",
-        duration: 2000
+        duration: 2000,
       });
-    }
+    },
   },
   components: {
-    "github-badge": GitHubBadge
-  }
+    "github-badge": GitHubBadge,
+  },
 };
 </script>
 
