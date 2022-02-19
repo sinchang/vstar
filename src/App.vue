@@ -229,7 +229,6 @@ body {
   }
 }
 .g-title {
-  font-family: billabong, "billabongregular";
   text-align: center;
   font-weight: 100;
   font-size: 100px;
@@ -243,20 +242,5 @@ body {
       outline: 0;
     }
   }
-}
-
-@font-face {
-  font-family: "billabongregular";
-  src: url("https://cdn.rawgit.com/milktronics/beaglegr.am/master/public/fonts/billabong-webfont.eot");
-  src: url("https://cdn.rawgit.com/milktronics/beaglegr.am/master/public/fonts/billabong-webfont.eot?#iefix")
-      format("embedded-opentype"),
-    url("https://cdn.rawgit.com/milktronics/beaglegr.am/master/public/fonts/billabong-webfont.woff")
-      format("woff"),
-    url("https://cdn.rawgit.com/milktronics/beaglegr.am/master/public/fonts/billabong-webfont.ttf")
-      format("truetype"),
-    url("https://cdn.rawgit.com/milktronics/beaglegr.am/master/public/fonts/billabong-webfont.svg#billabongregular")
-      format("svg");
-  font-weight: normal;
-  font-style: normal;
 }
 </style>
